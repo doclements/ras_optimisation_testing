@@ -67,8 +67,8 @@ def get_count_valid_pixels_year_dailies():
 
 def get_count_valid_pixels_year_dailies_geo_subset():
 
-   Lats = (46.44,46.44)
-   Longs = (-40.44,-40.44)
+   Lats = (46.44,48.44)
+   Longs = (-40.44,-38.44)
    # find all files that are needed
    # loop each and open
    # extract number of valid pixels
@@ -85,17 +85,21 @@ def get_count_valid_pixels_year_dailies_geo_subset():
       lons = ncfile.variables['lon'][:]
       lat_idxs = [get_index(lats,Lats[0]),get_index(lats,Lats[1])]
       lon_idxs = [get_index(lons,Longs[0]),get_index(lons,Longs[1])]
-      #print lat_idxs
-      #print lon_idxs
+      print lat_idxs
+      print lon_idxs
       chlor_a = ncfile.variables['chlor_a'][0,lat_idxs[1]:lat_idxs[0],lon_idxs[0]:lon_idxs[1]]
-      #print chlor_a.shape
+      #chlor_a = np.ma.MaskedArray(chlor_a)
+      #print chlor_a
       #print chlor_a.count()
       #print np.nanmax(chlor_a)
       count = count + 1
-      if(chlor_a == None):
-          output.append(0.0)
+      if(chlor_a.all() == None):
+          output.append(0)
       else:
-          output.append(chlor_a.tolist())
+           try:
+              output.append(chlor_a.count())
+           except:
+              output.append(chlor_a.size)
       ncfile.close()
       if count>=365:
          break
@@ -125,7 +129,7 @@ def get_single_point_timeseries_year_of_dailies():
       #print lon_idxs
       chlor_a = ncfile.variables['chlor_a'][0,lat_idxs,lon_idxs]
       chl_val = chlor_a.tolist()
-      #print chlor_a.shape
+      print chlor_a[:]
       #print chlor_a.count()
       #print np.nanmax(chlor_a)
       count = count + 1
@@ -141,18 +145,12 @@ def get_single_point_timeseries_year_of_dailies():
 
 def get_single_point_timeseries_year_of_dailies_rasdaman():
     query = """for c in (OC_CCI_V3_chlor_a_daily_final_test)
-return 
+return
 encode (
-
-coverage histogram over
-
-$pansi ansi(imageCrsDomain(c[ansi("2002-01-01T00:00:00.000Z":"2002-12-31T00:00:00.000Z")], ansi))
-
-values (
-
-c[Lat(46.44),Long(-5.44),ansi($pansi)] * (c[Lat(46.44),Long(-5.44),ansi($pansi)] < 10000)
-)
-, "csv")"""
+c[Lat(46.44),Long(-5.44),ansi("2002-01-01T00:00:00.000Z":"2002-12-31T00:00:00.000Z")] *
+(c[Lat(46.44),Long(-5.44),ansi("2002-01-01T00:00:00.000Z":"2002-12-31T00:00:00.000Z")] < 10000))
+, "csv")
+"""
     
     resp = requests.post('http://aurora.npm.ac.uk:8080/rasdaman/ows/wcps', data = {'query':query})
     data = resp.text
@@ -193,7 +191,8 @@ count(c[ansi($pansi)] < 1000000)
 
 def get_count_valid_pixel_year_dailies_rasdaman_geo_subset():
     # get query from txt file
-    # make http request
+    # make http request 46.44,56.44)
+    #Longs = (-40.44,-31.44
     # parse response
     query = """for c in  (OC_CCI_V3_chlor_a_daily_final_test)
 return 
@@ -205,7 +204,7 @@ $pansi ansi(imageCrsDomain(c[ansi("2002-01-01T00:00:00.000Z":"2002-12-31T00:00:0
 
 values (
 
-count(c[Lat(46.44:46.44),Long(-40.44:-40.44),ansi($pansi)] < 1000000)
+count(c[Lat(46.44:48.44),Long(-40.44:-38.44),ansi($pansi)] < 10000)
 )
 , "csv" )"""
     
@@ -242,6 +241,16 @@ def get_count_valid_pixel_geo_subset_year_dailies_xarray(geosubset):
          break
    #print output
 
+
+
+
+
+def get_chl_where_rms_less_than_1_geo_subset():
+    pass
+
+
+def get_chl_where_rms_less_than_1_geo_subset_rasdaman():
+    pass
 
 
 
