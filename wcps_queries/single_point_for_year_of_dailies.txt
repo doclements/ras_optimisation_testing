@@ -1,0 +1,13 @@
+for c in (OCCCI_V3_daily_chlor_a)
+return 
+encode (
+
+coverage histogram over
+
+$pansi ansi(imageCrsDomain(c[ansi("2002-01-01T00:00:00.000Z":"2002-12-31T00:00:00.000Z")], ansi))
+
+values (
+
+c[Lat(-55.5),Long(-30.5),ansi($pansi)] * (c[Lat(-55),Long(-30),ansi($pansi)] < 10000)
+)
+, "csv")

@@ -1,0 +1,11 @@
+for c in (CCI_V3_Daily_aggregate_chlor_a) return encode((float)
+coverage histogram over
+$px x( 0 : 0 ),
+$py y( 0 : 0 ),
+$pt ansi( 0 : 364 )
+values  (
+add( (c[Long(-50:-40), Lat(45:55),ansi:"CRS:1"($pt)] < 100000 ) * c[Long(-50:-40), Lat(45:55),ansi:"CRS:1"($pt)])
+/
+count(c[Long(-50:-40), Lat(45:55),ansi:"CRS:1"($pt)] < 100000 )
+)
+, "csv")

@@ -1,0 +1,70 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CCI_V3_DAILY_PATH	../python_analogs/basic_tests.py	/^CCI_V3_DAILY_PATH='\/data\/datasets\/CCI\/v3.0-release\/geographic\/netcdf\/daily\/chlor_a\/' # \/years\/365_files$/;"	kind:variable	line:8
+CCI_V3_DAILY_PATH	../python_analogs/xarray_test.py	/^CCI_V3_DAILY_PATH='\/data\/datasets\/CCI\/v3.0-release\/geographic\/netcdf\/daily\/chlor_a\/' # \/years\/365_files$/;"	kind:variable	line:6
+CCI_V3_MONTHLY_PATH	../python_analogs/basic_tests.py	/^CCI_V3_MONTHLY_PATH='\/data\/datasets\/CCI\/v3.0-release\/geographic\/netcdf\/monthly\/chlor_a' # \/years\/12_files$/;"	kind:variable	line:9
+CCI_V3_MONTHLY_PATH	../python_analogs/xarray_test.py	/^CCI_V3_MONTHLY_PATH='\/data\/datasets\/CCI\/v3.0-release\/geographic\/netcdf\/monthly\/chlor_a' # \/years\/12_files$/;"	kind:variable	line:7
+LogNorm	../python_analogs/xarray_test.py	/^from matplotlib.colors import LogNorm$/;"	kind:namespace	line:3
+basic_tests.py	../python_analogs/basic_tests.py	1;"	kind:file	line:1
+dataset	../python_analogs/test_wcps_vs_native_accuracy.py	/^dataset = nc.Dataset(netcdf_file)$/;"	kind:variable	line:161
+ds	../python_analogs/xarray_test.py	/^ds = xr.open_dataset(ncfile_month)$/;"	kind:variable	line:14
+gen_lls	../python_analogs/test_wcps_vs_native_accuracy.py	/^gen_lls = []$/;"	kind:variable	line:170
+gen_random_lat_lon_float	../python_analogs/test_wcps_vs_native_accuracy.py	/^def gen_random_lat_lon_float():$/;"	kind:function	line:21
+gen_random_lat_lon_int	../python_analogs/test_wcps_vs_native_accuracy.py	/^def gen_random_lat_lon_int():$/;"	kind:function	line:18
+get_comparison_of_chl_to_rmsd_year_dailies	../python_analogs/basic_tests.py	/^def get_comparison_of_chl_to_rmsd_year_dailies():$/;"	kind:function	line:17
+get_comparison_of_chl_to_rmsd_year_dailies_rasdaman	../python_analogs/basic_tests.py	/^def get_comparison_of_chl_to_rmsd_year_dailies_rasdaman():$/;"	kind:function	line:20
+get_count_valid_pixel_geo_subset_year_dailies_xarray	../python_analogs/basic_tests.py	/^def get_count_valid_pixel_geo_subset_year_dailies_xarray(geosubset):$/;"	kind:function	line:220
+get_count_valid_pixel_year_dailies_rasdaman	../python_analogs/basic_tests.py	/^def get_count_valid_pixel_year_dailies_rasdaman():$/;"	kind:function	line:162
+get_count_valid_pixel_year_dailies_rasdaman_geo_subset	../python_analogs/basic_tests.py	/^def get_count_valid_pixel_year_dailies_rasdaman_geo_subset():$/;"	kind:function	line:190
+get_count_valid_pixels_year_dailies	../python_analogs/basic_tests.py	/^def get_count_valid_pixels_year_dailies():$/;"	kind:function	line:44
+get_count_valid_pixels_year_dailies_geo_subset	../python_analogs/basic_tests.py	/^def get_count_valid_pixels_year_dailies_geo_subset():$/;"	kind:function	line:68
+get_count_valid_pixels_year_dailies_xarray	../python_analogs/basic_tests.py	/^def get_count_valid_pixels_year_dailies_xarray():$/;"	kind:function	line:23
+get_index	../python_analogs/basic_tests.py	/^def get_index(value, variable):$/;"	kind:function	line:14
+get_index	../python_analogs/test_wcps_vs_native_accuracy.py	/^def get_index(value, variable):$/;"	kind:function	line:8
+get_single_point_timeseries_year_of_dailies	../python_analogs/basic_tests.py	/^def get_single_point_timeseries_year_of_dailies():$/;"	kind:function	line:101
+get_single_point_timeseries_year_of_dailies_rasdaman	../python_analogs/basic_tests.py	/^def get_single_point_timeseries_year_of_dailies_rasdaman():$/;"	kind:function	line:138
+get_wcps_index	../python_analogs/test_wcps_vs_native_accuracy.py	/^def get_wcps_index(query):$/;"	kind:function	line:12
+glob	../python_analogs/basic_tests.py	/^import glob$/;"	kind:namespace	line:3
+lat	../python_analogs/test_wcps_vs_native_accuracy.py	/^lat= 6.44$/;"	kind:variable	line:215
+lat_bnds	../python_analogs/basic_tests.py	/^lat_bnds = [70, 0]$/;"	kind:variable	line:10
+lat_bnds	../python_analogs/xarray_test.py	/^lat_bnds = [70, 0]$/;"	kind:variable	line:18
+lat_dif_count	../python_analogs/test_wcps_vs_native_accuracy.py	/^lat_dif_count = 0$/;"	kind:variable	line:166
+lat_q	../python_analogs/test_wcps_vs_native_accuracy.py	/^lat_q = lat_query.format(Lat=str(lat), Long=str(lon))$/;"	kind:variable	line:217
+lat_variable	../python_analogs/test_wcps_vs_native_accuracy.py	/^lat_variable = dataset.variables['lat'][:]$/;"	kind:variable	line:163
+lon	../python_analogs/test_wcps_vs_native_accuracy.py	/^lon = 5.44$/;"	kind:variable	line:216
+lon_bnds	../python_analogs/basic_tests.py	/^lon_bnds =  [-20, 10]$/;"	kind:variable	line:11
+lon_bnds	../python_analogs/xarray_test.py	/^lon_bnds =  [-20, 10]$/;"	kind:variable	line:19
+lon_dif_count	../python_analogs/test_wcps_vs_native_accuracy.py	/^lon_dif_count = 0$/;"	kind:variable	line:167
+lon_q	../python_analogs/test_wcps_vs_native_accuracy.py	/^lon_q = lon_query.format(Lat=str(lat), Long=str(lon))$/;"	kind:variable	line:218
+lon_variable	../python_analogs/test_wcps_vs_native_accuracy.py	/^lon_variable = dataset.variables['lon'][:]$/;"	kind:variable	line:164
+matplotlib	../python_analogs/xarray_test.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+nc	../python_analogs/basic_tests.py	/^import netCDF4 as nc$/;"	kind:namespace	line:1
+nc	../python_analogs/test_wcps_vs_native_accuracy.py	/^import netCDF4 as nc$/;"	kind:namespace	line:3
+nc_lat	../python_analogs/test_wcps_vs_native_accuracy.py	/^nc_lat = get_index(lat, lat_variable)$/;"	kind:variable	line:220
+nc_lon	../python_analogs/test_wcps_vs_native_accuracy.py	/^nc_lon = get_index(lon, lon_variable)$/;"	kind:variable	line:221
+ncfile	../python_analogs/xarray_test.py	/^ncfile = CCI_V3_DAILY_PATH+'2002\/ESACCI-OC-L3S-CHLOR_A-MERGED-1D_DAILY_4km_GEO_PML_OCx-20021207-fv3.0.nc'$/;"	kind:variable	line:11
+ncfile_month	../python_analogs/xarray_test.py	/^ncfile_month = CCI_V3_MONTHLY_PATH+'\/2002\/ESACCI-OC-L3S-CHLOR_A-MERGED-1M_MONTHLY_4km_GEO_PML_OCx-200206-fv3.0.nc'$/;"	kind:variable	line:12
+netcdf_file	../python_analogs/test_wcps_vs_native_accuracy.py	/^netcdf_file = '\/data\/datasets\/CCI\/v3.0-release\/geographic\/netcdf\/daily\/chlor_a\/2000\/ESACCI-OC-L3S-CHLOR_A-MERGED-1D_DAILY_4km_GEO_PML_OCx-20001209-fv3.0.nc'$/;"	kind:variable	line:159
+np	../python_analogs/basic_tests.py	/^import numpy as np$/;"	kind:namespace	line:2
+np	../python_analogs/test_wcps_vs_native_accuracy.py	/^import numpy as np$/;"	kind:namespace	line:4
+np	../python_analogs/xarray_test.py	/^import numpy as np$/;"	kind:namespace	line:4
+plt	../python_analogs/xarray_test.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+random	../python_analogs/test_wcps_vs_native_accuracy.py	/^import random$/;"	kind:namespace	line:6
+requests	../python_analogs/basic_tests.py	/^import requests$/;"	kind:namespace	line:6
+requests	../python_analogs/test_wcps_vs_native_accuracy.py	/^import requests$/;"	kind:namespace	line:5
+run_count	../python_analogs/test_wcps_vs_native_accuracy.py	/^run_count = 400$/;"	kind:variable	line:169
+subset	../python_analogs/xarray_test.py	/^subset = ds.sel(lat=slice(*lat_bnds), lon=slice(*lon_bnds))$/;"	kind:variable	line:20
+t	../python_analogs/basic_tests.py	/^def t():$/;"	kind:function	line:244
+test_lat_lons	../python_analogs/test_wcps_vs_native_accuracy.py	/^test_lat_lons = [$/;"	kind:variable	line:26
+test_lat_lons_small	../python_analogs/test_wcps_vs_native_accuracy.py	/^test_lat_lons_small = [$/;"	kind:variable	line:134
+test_wcps_vs_native_accuracy.py	../python_analogs/test_wcps_vs_native_accuracy.py	1;"	kind:file	line:1
+timeit	../python_analogs/basic_tests.py	/^import timeit$/;"	kind:namespace	line:5
+wcps_lat	../python_analogs/test_wcps_vs_native_accuracy.py	/^wcps_lat = get_wcps_index(lat_q)$/;"	kind:variable	line:229
+wcps_lon	../python_analogs/test_wcps_vs_native_accuracy.py	/^wcps_lon = get_wcps_index(lon_q)$/;"	kind:variable	line:230
+xarray_test.py	../python_analogs/xarray_test.py	1;"	kind:file	line:1
+xr	../python_analogs/basic_tests.py	/^import xarray as xr$/;"	kind:namespace	line:4
+xr	../python_analogs/xarray_test.py	/^import xarray as xr$/;"	kind:namespace	line:1
