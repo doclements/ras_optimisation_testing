@@ -17,7 +17,7 @@ def get_index(value, variable):
 
 def copy_nc_dims_attr(dsin, dsout,lat_length=None,lon_length=None):
    for dname, the_dim in dsin.dimensions.iteritems():
-      print dname, len(the_dim)
+      #print dname, len(the_dim)
       if(lat_length and dname=='lat'):
           dsout.createDimension(dname, lat_length+1 )
       elif(lon_length and dname=='lon'):
@@ -261,9 +261,9 @@ def copy_var(dsin,dsout,var,subset=None):
     for v_name, varin in dsin.variables.iteritems():
        if (v_name == var):
           outVar = dsout.createVariable(v_name, varin.datatype, varin.dimensions)
-          print varin.dimensions
-          print outVar.size
-          print subset
+          #print varin.dimensions
+          #print outVar.size
+          #print subset
           #print varin[subset[1]:subset[0]+1].size
     # Copy variable attributes
           outVar.setncatts({k: varin.getncattr(k) for k in varin.ncattrs()})
@@ -346,8 +346,8 @@ def get_chl_where_rms_less_than_1_geo_subset_year_dailies():
       new_chlor_a = np.where(chlor_a_bias < 1,chlor_a,0)
       outVar = outfile.createVariable('new_chlor_a', ncfile.variables['chlor_a'].datatype, ncfile.variables['chlor_a'].dimensions)
       outVar.setncatts({k: ncfile.variables['chlor_a'].getncattr(k) for k in ncfile.variables['chlor_a'].ncattrs()})
-      print chlor_a.shape
-      print new_chlor_a.shape
+      #print chlor_a.shape
+      #print new_chlor_a.shape
       outfile.variables['new_chlor_a'][:] = new_chlor_a[:]
       #print chlor_a.count()
       ncfile.close()
