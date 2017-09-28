@@ -15,10 +15,15 @@ def get_index(value, variable):
     return np.argmin(abs(variable - value))
 
 
-def copy_nc_dims_attr(dsin, dsout):
+def copy_nc_dims_attr(dsin, dsout,lat_length=None,lon_length=None):
    for dname, the_dim in dsin.dimensions.iteritems():
       print dname, len(the_dim)
-      dsout.createDimension(dname, len(the_dim) if not the_dim.isunlimited() else None)
+      if(lat_length and dname=='lat'):
+          dsout.createDimension(dname, lat_length+1 )
+      elif(lon_length and dname=='lon'):
+          dsout.createDimension(dname, lon_length+1 )
+      else:
+          dsout.createDimension(dname, len(the_dim) if not the_dim.isunlimited() else None)
    for name in dsin.ncattrs():
       dsout.setncattr(name, dsin.getncattr(name))
 
@@ -252,15 +257,23 @@ def get_count_valid_pixel_geo_subset_year_dailies_xarray(geosubset):
    #print output
 
 
-def copy_var(dsin,dsout,var):
+def copy_var(dsin,dsout,var,subset=None):
     for v_name, varin in dsin.variables.iteritems():
        if (v_name == var):
           outVar = dsout.createVariable(v_name, varin.datatype, varin.dimensions)
-    
+          print varin.dimensions
+          print outVar.size
+          print subset
+          #print varin[subset[1]:subset[0]+1].size
     # Copy variable attributes
           outVar.setncatts({k: varin.getncattr(k) for k in varin.ncattrs()})
-    
-          outVar[:] = varin[:]
+          if(subset):
+             if(subset[0] > subset[1]): 
+                outVar[:] = varin[subset[1]:subset[0]+1]
+             else:
+                outVar[:] = varin[subset[0]:subset[1]+1]
+          else:
+             outVar[:] = varin[:] 
 
 
 
@@ -300,11 +313,97 @@ def get_chl_where_rms_less_than_1_single_day():
          break
    print output
 
-def get_chl_where_rms_less_than_1_single_day_rev():
-    pass 
+def get_chl_where_rms_less_than_1_geo_subset_year_dailies():
+       # find all files that are needed
+   # loop each and open
+   # extract both variables
+   # close file
+   # use numpy array where clause to create new chl array
+   # write netcdf file
+   # end
+   count = 0
+   output = []
+   Lats = (40.44,48.44)
+   Longs = (-8.44,0.44)
+   #print "starting normal numpy test"
+   for f in sorted(glob.glob(CCI_V3_DAILY_PATH+'/2002/*.nc')): #for future use the pixel cords for this year are 1553-1917
+      #print "opening {file} for testing.....".format(file=f)
+      ncfile = nc.Dataset(f)
+      outfile = nc.Dataset('../output/netcdfs/testout{num}.nc'.format(num=str(count).zfill(3)),'w')
+      lats = ncfile.variables['lat'][:]
+      lons = ncfile.variables['lon'][:]
+      subset = {}
+      lat_idxs = subset['lat_idxs'] = [get_index(lats,Lats[0]),get_index(lats,Lats[1])]
+      lon_idxs = subset['lon_idxs'] = [get_index(lons,Longs[0]),get_index(lons,Longs[1])]
+      copy_nc_dims_attr(ncfile,outfile,lat_length=abs(subset['lat_idxs'][0] - subset['lat_idxs'][1] ),lon_length=abs(subset['lon_idxs'][0] - subset['lon_idxs'][1] ))
+
+
+      copy_var(ncfile,outfile,'lat',subset=subset['lat_idxs'])
+      copy_var(ncfile,outfile,'lon',subset=subset['lon_idxs'])
+      copy_var(ncfile,outfile,'time')
+      chlor_a = ncfile.variables['chlor_a'][0,lat_idxs[1]:lat_idxs[0]+1,lon_idxs[0]:lon_idxs[1]+1]
+      chlor_a_bias = ncfile.variables['chlor_a_log10_bias'][0,lat_idxs[1]:lat_idxs[0]+1,lon_idxs[0]:lon_idxs[1]+1]
+      new_chlor_a = np.where(chlor_a_bias < 1,chlor_a,0)
+      outVar = outfile.createVariable('new_chlor_a', ncfile.variables['chlor_a'].datatype, ncfile.variables['chlor_a'].dimensions)
+      outVar.setncatts({k: ncfile.variables['chlor_a'].getncattr(k) for k in ncfile.variables['chlor_a'].ncattrs()})
+      print chlor_a.shape
+      print new_chlor_a.shape
+      outfile.variables['new_chlor_a'][:] = new_chlor_a[:]
+      #print chlor_a.count()
+      ncfile.close()
+      outfile.close()
+      count = count + 1
+      #output.append(chlor_a.count())
+      if count>=365:
+         break
+   print output 
 
 def get_chl_where_rms_less_than_1_geo_subset_single_day():
-    pass
+   # find all files that are needed
+   # loop each and open
+   # extract both variables
+   # close file
+   # use numpy array where clause to create new chl array
+   # write netcdf file
+   # end
+   count = 0
+   output = []
+   Lats = (40.44,48.44)
+   Longs = (-8.44,0.44)
+   #print "starting normal numpy test"
+   for f in sorted(glob.glob(CCI_V3_DAILY_PATH+'/2002/*.nc')): #for future use the pixel cords for this year are 1553-1917
+      #print "opening {file} for testing.....".format(file=f)
+      ncfile = nc.Dataset(f)
+      outfile = nc.Dataset('../output/netcdfs/testout{num}.nc'.format(num=str(count).zfill(3)),'w')
+      lats = ncfile.variables['lat'][:]
+      lons = ncfile.variables['lon'][:]
+      subset = {}
+      lat_idxs = subset['lat_idxs'] = [get_index(lats,Lats[0]),get_index(lats,Lats[1])]
+      lon_idxs = subset['lon_idxs'] = [get_index(lons,Longs[0]),get_index(lons,Longs[1])]
+      copy_nc_dims_attr(ncfile,outfile,lat_length=abs(subset['lat_idxs'][0] - subset['lat_idxs'][1] ),lon_length=abs(subset['lon_idxs'][0] - subset['lon_idxs'][1] ))
+
+
+      copy_var(ncfile,outfile,'lat',subset=subset['lat_idxs'])
+      copy_var(ncfile,outfile,'lon',subset=subset['lon_idxs'])
+      copy_var(ncfile,outfile,'time')
+      chlor_a = ncfile.variables['chlor_a'][0,lat_idxs[1]:lat_idxs[0]+1,lon_idxs[0]:lon_idxs[1]+1]
+      chlor_a_bias = ncfile.variables['chlor_a_log10_bias'][0,lat_idxs[1]:lat_idxs[0]+1,lon_idxs[0]:lon_idxs[1]+1]
+      new_chlor_a = np.where(chlor_a_bias < 1,chlor_a,0)
+      outVar = outfile.createVariable('new_chlor_a', ncfile.variables['chlor_a'].datatype, ncfile.variables['chlor_a'].dimensions)
+      outVar.setncatts({k: ncfile.variables['chlor_a'].getncattr(k) for k in ncfile.variables['chlor_a'].ncattrs()})
+      print chlor_a.shape
+      print new_chlor_a.shape
+      outfile.variables['new_chlor_a'][:] = new_chlor_a[:]
+      #print chlor_a.count()
+      ncfile.close()
+      outfile.close()
+      count = count + 1
+      #output.append(chlor_a.count())
+      if count>=1:
+         break
+   print output 
+
+
 
 
 def get_chl_where_rms_less_than_1_rasdaman_single_day():
@@ -359,7 +458,7 @@ def t():
 
 if __name__ == '__main__':
     #tt = timeit.timeit(get_count_valid_pixels_year_dailies_geo_subset, number=1)
-    tt2 = timeit.timeit(get_chl_where_rms_less_than_1_single_day, number=1)
+    tt2 = timeit.timeit(get_chl_where_rms_less_than_1_geo_subset_year_dailies, number=1)
 
     #get_count_valid_pixels_year_dailies_xarray()
     #print "Python"
