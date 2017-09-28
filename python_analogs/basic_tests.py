@@ -417,6 +417,7 @@ c[ansi("2002-05-01T00:00:00.000Z")].chlor_a *
     with open('get_chl_where_rms_less_than_1_rasdaman_single_day.nc', 'w') as outfile:
         outfile.write(resp.content)
 
+# current bug in rasdaman breaks this
 def get_chl_where_rms_less_than_1_rasdaman_single_day_rev():
     query = """for c in (OC_CCI_V3_chlor_a_merged_2002)
 return
@@ -428,6 +429,7 @@ c[ansi("2002-05-01T00:00:00.000Z")].chlor_a *
     with open('get_chl_where_rms_less_than_1_rasdaman_single_day_rev.nc', 'w') as outfile:
         outfile.write(resp.content)
 
+# current bug in rasdaman breaks this
 def get_chl_where_rms_less_than_1_geo_subset_rasdaman_single_day():
     query = """for c in (OC_CCI_V3_chlor_a_merged_2002)
 return
@@ -439,7 +441,7 @@ c[Lat(30:31),Long(-40:-39)][ansi("2002-05-01T00:00:00.000Z")].chlor_a *
     with open('get_chl_where_rms_less_than_1_geo_subset_rasdaman_single_day.nc', 'w') as outfile:
         outfile.write(resp.content)
 
-
+# current bug in rasdaman breaks this
 def get_chl_where_rms_less_than_1_geo_subset_rasdaman_year_dailies():
     query = """for c in (OC_CCI_V3_chlor_a_merged_2002)
 return
