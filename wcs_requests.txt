@@ -1,0 +1,16 @@
+{
+   "WCS_queries": {
+      "small_subset_1_yr_daylies" : "https://vortices.npm.ac.uk/thredds/wcs/CCI_ALL-v3.0-DAILY?service=WCS&version=1.0.0&request=GetCoverage&coverage=chlor_a&crs=OGC:CRS84&format=NetCDF3&time=2001-01-01/2002-12-31&bbox=-40.44,46.44,-38.44,48.44",
+      "full_globe_single_daily" : "https://vortices.npm.ac.uk/thredds/wcs/CCI_ALL-v3.0-DAILY?service=WCS&version=1.0.0&request=GetCoverage&coverage=chlor_a&crs=OGC:CRS84&format=NetCDF3&time=2002-01-01",
+      "full_globe_5_slices_daily" : "https://vortices.npm.ac.uk/thredds/wcs/CCI_ALL-v3.0-DAILY?service=WCS&version=1.0.0&request=GetCoverage&coverage=chlor_a&crs=OGC:CRS84&format=NetCDF3&time=2002-01-01/2002-01-05",
+      "hypothetical_year_of_daily_chlor_a" : "https://vortices.npm.ac.uk/thredds/wcs/CCI_ALL-v3.0-DAILY?service=WCS&version=1.0.0&request=GetCoverage&coverage=chlor_a&crs=OGC:CRS84&format=NetCDF3&time=2002-01-01/2002-12-31".
+   },
+   "WCS_payload_sizes" : {
+      "small_subset_1_yr_daylies" : 7040304,
+      "full_globe_single_daily" : 149386724,
+      "full_globe_5_slices_daily" : 746583540,
+      "hypothetical_year_of_daily_chlor_a" : 54500598420
+   }
+}
+
+

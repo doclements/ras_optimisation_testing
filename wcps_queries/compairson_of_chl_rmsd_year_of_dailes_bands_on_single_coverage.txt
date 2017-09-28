@@ -1,7 +1,6 @@
 for c in (OC_CCI_V3_chlor_a_merged_2002)
-return 
+return
 encode (
-
-(c[ansi("2002-01-01T00:00:00.000Z":"2002-12-31T00:00:00.000Z")].chlor_a * (c[ansi("2002-01-01T00:00:00.000Z":"2002-12-31T00:00:00.000Z")].chlor_a_log10_bias < 1) )
-
-, "csv")
+c[ansi("2002-05-01T00:00:00.000Z")].chlor_a *
+(c[ansi("2002-05-01T00:00:00.000Z")].chlor_a_log10_bias > 1)
+, "netcdf")
